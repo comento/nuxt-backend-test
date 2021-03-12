@@ -23,12 +23,32 @@
           GitHub
         </a>
       </div>
+      <div class="links">
+        <a
+          @click="clickButton"
+          class="button--green"
+        >
+          Documentation
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import {DynamoDBClient, GetItemCommand, ListTablesCommand, PutItemCommand} from "@aws-sdk/client-dynamodb";
+
+export default {
+  async mounted() {
+    console.log(process.env.testText);
+  },
+  methods: {
+    async clickButton() {
+      const ip = await this.$axios.$get('http://icanhazip.com')
+      console.log(ip);
+    }
+  }
+}
 </script>
 
 <style>
